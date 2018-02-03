@@ -1738,7 +1738,7 @@ function stopDefault(e) {
  * ======================================================================== */
 /* global Event */
 (function(document, window, index) {
-	// Index is used to keep multiple navs on the same page namespaced
+	// Base is used to keep multiple navs on the same page namespaced
 	"use strict";
 	var responsiveNav = function(el, options) {
 		var computed = !!window.getComputedStyle;

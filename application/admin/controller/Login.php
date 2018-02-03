@@ -7,15 +7,25 @@
  */
 
 namespace app\admin\controller;
-
-
-use think\Controller;
 use app\common\lib\IAuth;
-class Login extends Controller
+class Login extends Base
 {
+    public function _initialize(){
+
+    }
+
+    /**
+     * 判断登录
+     * @return mixed|void
+     */
     public function index()
     {
-        return $this->fetch();
+        $islogin = $this->islogin();
+        if ($islogin){
+            return $this ->redirect('index/index');
+        }else{
+            return $this->fetch();
+        }
     }
 
     /**
