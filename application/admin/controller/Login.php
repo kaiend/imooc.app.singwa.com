@@ -19,10 +19,11 @@ class Login extends Controller
     }
 
     /**
+     * login 相关
      * 验证码验证+登录验证
      */
     public function check(){
-        if ($this->request->isPost()){
+        if (request()->isPost()){
             $data = input('post.');
             if(!captcha_check($data['code'])){
                 $this->error('验证码错误');
@@ -32,23 +33,44 @@ class Login extends Controller
                 $this->error('用户名或密码不能为空');
             }
 
-            /**
-             * model（AdminUser数据表）->get();
-             */
-            $user = model('AdminUser')->get(['username' => $data['username']]);
-            if (!$user||$user->status !=1){
+            try {
+                $user = model('AdminUser')->get(['username' => $data['username']]);
+            } catch (\Exception $e) {
+                $this->error($e->getMessage());
+            }
+            if (!$user || $user->status != config('code.status_normal')) {
                 $this->error('用户不存在');
+            };
+
+            if (IAuth::setPassword($data['password']) != $user['password']) {
+                $this->error('密码错误');
             }
 
-            //校验密码
-               // md5($data['password'].'#sing_ty')
-            if (IAuth::setpassword($data['password']) != $user['password']){
-                $this->error('密码不正确');
+            $udata = [
+                'last_login_time' => time(),
+                'last_login_ip' => request()->ip(),
+            ];
+            try {
+                model('AdminUser')->save($udata, ['id' => $user->id]);
+            } catch (\Exception $e) {
+                $this->error($e->getMessage());
             }
+            //2session保存
+            session(config('admin.session_user'),$user,config('admin.session_user_scope'));
+            $this->success('登陆成功','index/index');
         }else{
             $this->error('请求不合法');
         }
 
+    }
+
+    /**
+     * 退出登录
+     */
+    public function logout()
+    {
+        session(null,config('admin.session_user_scope'));
+        $this->redirect('login/index');
     }
 
 
