@@ -27,12 +27,14 @@ class Login extends Controller
             if(!captcha_check($data['code'])){
                 $this->error('验证码错误');
             }
-            //用户名密码验证
-          /*  $validate = validate('AdminUser');
-            if (!$validate->check($data['username'])||$data['password']){
-                $this->error($validate->getError());
-            }*/
+            if(!$data['username']||!$data['password'])
+            {
+                $this->error('用户名或密码不能为空');
+            }
 
+            /**
+             * model（AdminUser数据表）->get();
+             */
             $user = model('AdminUser')->get(['username' => $data['username']]);
             if (!$user||$user->status !=1){
                 $this->error('用户不存在');

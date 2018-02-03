@@ -10,6 +10,7 @@ namespace app\admin\controller;
 
 
 use think\Controller;
+use app\common\lib\IAuth;
 
 class Admin extends Controller
 {
@@ -22,7 +23,8 @@ class Admin extends Controller
             if (!$validate->check($data)){
                 $this->error($validate->getError());
             }
-            $data['password']=md5($data['password'].'#sing_ty');
+           // $data['password']=md5($data['password'].'_#sing_ty');
+            $data['password']=IAuth::setpassword($data['password']);
             $data['status']=1;
 
             try{
