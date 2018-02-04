@@ -11,7 +11,6 @@ use app\common\lib\IAuth;
 class Login extends Base
 {
     public function _initialize(){
-
     }
 
     /**
