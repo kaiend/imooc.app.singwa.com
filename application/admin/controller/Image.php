@@ -18,10 +18,20 @@ class Image extends Base
      */
     public function upload()
     {
-         $file = Request::instance()->file('file');
+        $file = Request::instance()->file('file');
         // halt($file);
-         $info=$file->move('upload');
-         halt($info);
+        $info = $file->move('upload');
+        if ($info && $info->getPathname()) {
+            $data=[
+                'status'=>1,
+                'msg'  => 'ok',
+                'data'  => '/'.$info->getPathname()
+            ];
+            echo json_encode($data);exit;
+        }
+
+        echo json_encode(['status'=>0,'msg'=>'上传失败']);exit;
+
     }
 
 }
