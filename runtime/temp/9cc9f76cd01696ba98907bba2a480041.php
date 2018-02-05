@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:70:"D:\imooc.app.singwa.com\public/../application/admin\view\news\add.html";i:1517725350;s:64:"D:\imooc.app.singwa.com\application\admin\view\public\_meta.html";i:1517722245;s:66:"D:\imooc.app.singwa.com\application\admin\view\public\_footer.html";i:1517725600;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:70:"D:\imooc.app.singwa.com\public/../application/admin\view\news\add.html";i:1517799796;s:64:"D:\imooc.app.singwa.com\application\admin\view\public\_meta.html";i:1517722245;s:66:"D:\imooc.app.singwa.com\application\admin\view\public\_footer.html";i:1517725600;}*/ ?>
 <!--header-->
 <!DOCTYPE HTML>
 <html>
@@ -92,15 +92,6 @@
         <input id="file_upload_image" name="image" type="hidden" multiple="true" value="">
       </div>
     </div>
-
- <!--   <div class="row cl">
-      <label class="form-label col-xs-4 col-sm-2">文章内容：</label>
-      <div class="formControls col-xs-8 col-sm-9">
-        <input id="file_upload"  type="file" multiple="true" >
-        <img style="display: none" id="upload_org_code_img" src="" width="150" height="150">
-        <input id="file_upload_image" name="image" type="hidden" multiple="true" value="">
-      </div>
-    </div>-->
 
     <div class="row cl">
       <label class="form-label col-xs-4 col-sm-2">文章内容：</label>

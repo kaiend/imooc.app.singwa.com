@@ -9,6 +9,8 @@
 namespace app\admin\controller;
 
 
+use think\Request;
+
 class Image extends Base
 {
     /**
@@ -16,7 +18,10 @@ class Image extends Base
      */
     public function upload()
     {
-        return 1;
+         $file = Request::instance()->file('file');
+        // halt($file);
+         $info=$file->move('upload');
+         halt($info);
     }
 
 }

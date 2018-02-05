@@ -14,6 +14,6 @@ $(function() {
                 $('#upload_org_code_img').show();
             }
         }
-        
+
     });
 });
