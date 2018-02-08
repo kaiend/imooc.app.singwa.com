@@ -7,8 +7,6 @@
  */
 
 namespace app\admin\controller;
-
-
 use think\Request;
 use app\common\lib\Upload;
 
@@ -17,7 +15,7 @@ class Image extends Base
     /**
      * 图片上传本地
      */
-    public function upload0()
+    public function upload1()
     {
         $file = Request::instance()->file('file');
         // halt($file);
@@ -49,6 +47,7 @@ class Image extends Base
             echo json_encode(['status' => 0, 'msg' => $e->getMessage()]);
 
         }
+
         if ($image) {
             $data = [
                 'status' => 1,
