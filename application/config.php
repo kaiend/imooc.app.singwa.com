@@ -234,7 +234,7 @@ return [
     'paginate'               => [
         'type'      => 'bootstrap',
         'var_page'  => 'page',
-        'list_rows' => 15,
+        'list_rows' => 5,
     ],
     'captcha' =>   [
         // 验证码字体大小

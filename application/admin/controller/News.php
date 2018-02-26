@@ -12,8 +12,25 @@ class News extends Base
 {
     public function index()
     {
-       $news= model('News')->getNews();
-        return $this->fetch('',['news'=>$news]);
+       //$news= model('News')->getNews();
+
+        $data = input('param.');
+        $whereData = [];
+        $this->getPageAndSize($data);
+        $whereData['page'] = $this->page;
+        $whereData['size'] = $this->size;
+
+        //获取表里面的数据
+        $news= model('News')->getNewsByCondition($whereData);
+        //获取满足条件的总数=》共有多少页
+        $total = model('News')->getNewsByCondition($whereData);
+        //结合总数+size => 有多少页
+        $pageTotal = ceil($total/$whereData['size']);
+
+        return $this->fetch('',[
+            'news'=>$news,
+            'pageTotal' =>$pageTotal,
+            ]);
     }
     public function add()
     {

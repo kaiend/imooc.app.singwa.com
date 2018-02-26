@@ -10,3 +10,24 @@
 // +----------------------------------------------------------------------
 
 // 应用公共文件
+function pagination($obj)
+{
+    if (!$obj){
+        return '';
+    }
+    $params = request()->param();
+    return '<div class="imooc-app">'.$obj->appends($params)->render().'</div>';
+}
+function getCatName($catId)
+{
+    if (!$catId){
+        return '';
+    }
+    $cats = config('cat.list');
+    return !empty($catId) ? $cats[$catId] : '';
+}
+
+function isYesNo($str)
+{
+    return $str ? '<span style="color: red">是</span>':'<span>否</span>';
+}
