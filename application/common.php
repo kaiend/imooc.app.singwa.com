@@ -12,22 +12,50 @@
 // 应用公共文件
 function pagination($obj)
 {
-    if (!$obj){
+    if (!$obj) {
         return '';
     }
     $params = request()->param();
-    return '<div class="imooc-app">'.$obj->appends($params)->render().'</div>';
+    //return '<div class="imooc-app">' . $obj->appends($params)->render() . '</div>';
+   // return '<div class="imooc-app">' . $obj->appends($params)->render() . '</div>';
 }
+
+/**
+ * 获取栏目名称
+ * @param $catId
+ * @return string
+ */
 function getCatName($catId)
 {
-    if (!$catId){
+    if (!$catId) {
         return '';
     }
     $cats = config('cat.list');
-    return !empty($catId) ? $cats[$catId] : '';
+    return !empty($cats[$catId]) ? $cats[$catId] : '';
 }
 
 function isYesNo($str)
 {
-    return $str ? '<span style="color: red">是</span>':'<span>否</span>';
+    return $str ? '<span style="color: red">是</span>' : '<span>否</span>';
+}
+
+/**
+ * 状态
+ * @param $id
+ * @param $status
+ */
+function status($id, $status)
+{
+    $controller = request()->controller();
+    $sta = $status == 1 ? 0 : 1;
+    $url = url($controller . '/status', ['id' => $id, 'status' => $sta]);
+    if ($status == 1) {
+        $str = "<a href='javascript:;' title='修改状态' status_url='" . $url . "' onclick='app_status(this)'><span 
+class='label label-success rdiusa'>正
+常</span></a>";
+    } elseif ($status == 0) {
+        $str = "<a href='javascript:;' title='修改状态' status_url='" . $url . "' onclick='app_status(this)'><span 
+class='label label-success rdiusa'>待审</span></a>";
+    }
+    return $str;
 }

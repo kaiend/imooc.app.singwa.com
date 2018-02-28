@@ -33,18 +33,18 @@ class News extends Base
      * 根据条件来获取数据
      * @param array $param
      */
-    public function getNewsByCondition($param = [])
+    public function getNewsByCondition($condition = [], $from = 0, $size = 5)
     {
         $condition['status'] = [
             'neq', config('code.status_delete')
         ];
 
         $order = ['id' => 'desc'];
-        $from = ($param['page'] - 1) * $param('size');
         $result = $this->where($condition)
-            ->limit($from, $param['size'])
-            ->order($from)
+            ->limit($from, $size)
+            ->order($order)
             ->select();
+        //echo $this->getLastSql();
         return $result;
     }
 
@@ -52,14 +52,13 @@ class News extends Base
      * 根据条件获取列表数据的总数
      * @param array $param
      */
-    public function getNewsCountByCoandition($param = [])
+    public function getNewsCountByCondition($condition = [])
     {
         $condition['status'] = [
             'neq', config('code.status_delete')
         ];
         return $this->where($condition)
             ->count();
-
     }
 
 }

@@ -13,3 +13,75 @@ function singwaapp_save(form) {
     }, 'JSON');
 
 }
+
+/**
+ * 时间插件适配方法
+ * @param flag
+ */
+function selecttime(flag) {
+    if (flag == 1) {
+        var endTime = $("#countTimeend").val();
+        if (endTime != "") {
+            WdatePicker({dateFmt: 'yyyy-MM-dd HH:mm', maxDate: endTime})
+        } else {
+            WdatePicker({dateFmt: 'yyyy-MM-dd HH:mm'})
+        }
+    } else {
+        var startTime = $("#countTimestart").val();
+        if (startTime != "") {
+            WdatePicker({dateFmt: 'yyyy-MM-dd HH:mm', minDate: startTime})
+        } else {
+            WdatePicker({dateFmt: 'yyyy-MM-dd HH:mm'})
+        }
+    }
+}
+
+/**
+ * 通用化的删除操作
+ * @param obj
+ */
+function app_del(obj) {
+    url = $(obj).attr('del_url');
+    layer.confirm('确认要删除吗？', function (index) {
+        $.ajax({
+            type: 'POST',
+            url: 'url',
+            dataType: 'json',
+            success: function (data) {
+                if (data.code = 1) {
+                    self.location = data.data.jump_url;
+                } else if{
+                    layer.msg(data.msg, {icon: 2, time: 2000});
+            }
+            },
+            error: function (data) {
+                console.log(data.msg);
+            },
+        });
+    });
+}
+
+/**
+ * 通用化修改状态操作
+ * @param obj
+ */
+function app_status(obj) {
+    url = $(obj).attr('status_url');
+    layer.confirm('确认要删除吗？', function (index) {
+        $.ajax({
+            type: 'POST',
+            url: 'url',
+            dataType: 'json',
+            success: function (data) {
+                if (data.code = 1) {
+                    self.location = data.data.jump_url;
+                } else if{
+                    layer.msg(data.msg, {icon: 2, time: 2000});
+            }
+            },
+            error: function (data) {
+                console.log(data.msg);
+            }
+        });
+    });
+}
