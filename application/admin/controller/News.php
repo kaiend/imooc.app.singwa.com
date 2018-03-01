@@ -14,6 +14,7 @@ class News extends Base
 {
     public function index()
     {
+        //$this->model = '表名';//解决数据库和控制器表名不一样的问题
         //$news= model('News')->getNews();//模式一
 
         //模式二

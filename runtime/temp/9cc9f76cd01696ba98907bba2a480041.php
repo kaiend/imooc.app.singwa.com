@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:70:"D:\imooc.app.singwa.com\public/../application/admin\view\news\add.html";i:1517799796;s:64:"D:\imooc.app.singwa.com\application\admin\view\public\_meta.html";i:1517722245;s:66:"D:\imooc.app.singwa.com\application\admin\view\public\_footer.html";i:1517725600;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:70:"D:\imooc.app.singwa.com\public/../application/admin\view\news\add.html";i:1519896265;s:64:"D:\imooc.app.singwa.com\application\admin\view\public\_meta.html";i:1517722245;s:66:"D:\imooc.app.singwa.com\application\admin\view\public\_footer.html";i:1517725600;}*/ ?>
 <!--header-->
 <!DOCTYPE HTML>
 <html>
@@ -45,7 +45,17 @@
         <input type="text" class="input-text" value="" placeholder="" id="samll_title" name="small_title">
       </div>
     </div>
-
+    <div class="row cl">
+      <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>分类栏目：</label>
+      <div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
+				<select name="catid" class="select">
+                 <?php if(is_array($cats) || $cats instanceof \think\Collection || $cats instanceof \think\Paginator): $i = 0; $__LIST__ = $cats;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                  <option value="<?php echo $key; ?>"><?php echo $vo; ?></option>
+                  <?php endforeach; endif; else: echo "" ;endif; ?>
+                  
+                </select>
+				</span> </div>
+    </div>
 
     <div class="row cl">
       <label class="form-label col-xs-4 col-sm-2">文章摘要：</label>

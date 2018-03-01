@@ -79,6 +79,7 @@ class Base extends Controller
      */
     public function delete($id = 0)
     {
+        //return $this->result('', 0, '删除失败');
         if (!intval($id)) {
             return $this->result('', 0, 'id不合法');
         }
@@ -91,7 +92,8 @@ class Base extends Controller
             return $this->result('', 0, $e->getMessage());
         }
         if ($res) {
-            return $this->result(['jump_url' => $_SERVER['HTTP_REFERER']], 1, 'ok');
+           // return $this->result(['jump_url' => $_SERVER['HTTP_REFERER']], 1, 'ok');
+            return $this->result(['jump_url' => $_SERVER['HTTP_REFERER']], 1, 'OK');
         }
         if ($res) {
             return $this->result('', 0, '删除失败');

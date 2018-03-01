@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:71:"D:\imooc.app.singwa.com\public/../application/admin\view\admin\add.html";i:1517620416;s:64:"D:\imooc.app.singwa.com\application\admin\view\public\_meta.html";i:1517722245;s:66:"D:\imooc.app.singwa.com\application\admin\view\public\_footer.html";i:1517620416;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:71:"D:\imooc.app.singwa.com\public/../application/admin\view\admin\add.html";i:1517620416;s:64:"D:\imooc.app.singwa.com\application\admin\view\public\_meta.html";i:1517722245;s:66:"D:\imooc.app.singwa.com\application\admin\view\public\_footer.html";i:1517725600;}*/ ?>
 <!--header-->
 <!DOCTYPE HTML>
 <html>

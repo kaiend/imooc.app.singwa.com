@@ -42,21 +42,22 @@ function selecttime(flag) {
  */
 function app_del(obj) {
     url = $(obj).attr('del_url');
+    //alert(url);
     layer.confirm('确认要删除吗？', function (index) {
         $.ajax({
             type: 'POST',
             url: 'url',
             dataType: 'json',
             success: function (data) {
-                if (data.code = 1) {
+                if (data.code == 1) {
                     self.location = data.data.jump_url;
-                } else if{
+                } else if(data.code == 0){
                     layer.msg(data.msg, {icon: 2, time: 2000});
             }
             },
             error: function (data) {
                 console.log(data.msg);
-            },
+            }
         });
     });
 }
@@ -73,9 +74,9 @@ function app_status(obj) {
             url: 'url',
             dataType: 'json',
             success: function (data) {
-                if (data.code = 1) {
+                if (data.code == 1) {
                     self.location = data.data.jump_url;
-                } else if{
+                } else if(data.code == 0) {
                     layer.msg(data.msg, {icon: 2, time: 2000});
             }
             },

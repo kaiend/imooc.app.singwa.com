@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:73:"D:\imooc.app.singwa.com\public/../application/admin\view\index\index.html";i:1517620416;s:64:"D:\imooc.app.singwa.com\application\admin\view\public\_meta.html";i:1517722245;s:66:"D:\imooc.app.singwa.com\application\admin\view\public\_header.html";i:1517620416;s:64:"D:\imooc.app.singwa.com\application\admin\view\public\_menu.html";i:1517620416;s:66:"D:\imooc.app.singwa.com\application\admin\view\public\_footer.html";i:1517725600;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:73:"D:\imooc.app.singwa.com\public/../application/admin\view\index\index.html";i:1517620416;s:64:"D:\imooc.app.singwa.com\application\admin\view\public\_meta.html";i:1517722245;s:66:"D:\imooc.app.singwa.com\application\admin\view\public\_header.html";i:1517904443;s:64:"D:\imooc.app.singwa.com\application\admin\view\public\_menu.html";i:1517904468;s:66:"D:\imooc.app.singwa.com\application\admin\view\public\_footer.html";i:1517725600;}*/ ?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -33,7 +33,8 @@
 
 <header class="navbar-wrapper">
 	<div class="navbar navbar-fixed-top">
-		<div class="container-fluid cl"> <a class="logo navbar-logo f-l mr-10 hidden-xs" href="<?php echo url('index/index'); ?>">imoog_app_singwa</a>
+		<div class="container-fluid cl"> <a class="logo navbar-logo f-l mr-10 hidden-xs"
+											href="<?php echo url('index/index'); ?>">趣侣行APP管理后台</a>
 
 			<nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
 				<ul class="cl">
@@ -63,7 +64,7 @@
 <aside class="Hui-aside">
 	<div class="menu_dropdown bk_2">
 		<dl id="menu-article">
-			<dt><i class="Hui-iconfont">&#xe616;</i> 娱乐新闻管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dt><i class="Hui-iconfont">&#xe616;</i> 产品管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
 				  <li><a data-href="<?php echo url('news/add'); ?>" data-title="添加管理" href="javascript:void(0)">添加管理</a></li>
