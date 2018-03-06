@@ -85,14 +85,13 @@ class Base extends Controller
         }
         $model = $this->model ? $this->model : request()->controller();
         //php7的写法
-        //$model = $this->model ?? : request()->controller();
         try {
             $res = model($model)->save(['status' => -1], ['id' => $id]);
         } catch (\Exception $e) {
             return $this->result('', 0, $e->getMessage());
         }
         if ($res) {
-           // return $this->result(['jump_url' => $_SERVER['HTTP_REFERER']], 1, 'ok');
+            // return $this->result(['jump_url' => $_SERVER['HTTP_REFERER']], 1, 'ok');
             return $this->result(['jump_url' => $_SERVER['HTTP_REFERER']], 1, 'OK');
         }
         if ($res) {
@@ -106,11 +105,17 @@ class Base extends Controller
      */
     public function status()
     {
+        /* if (!intval($id)) {
+             return $this->result('', 0, 'id不合法');
+         }*/
         $data = input('param.');
         //todo tp5 validate校验
 
         //todo 通过id 查询记录是否存在
-        $model = $this->model ? $this->model : request()->controller();
+         $model = $this->model ? $this->model : request()->controller();
+
+        // $i= model($model)->get($data['id']);
+
         try {
             $res = model($model)->save(['status' => $data['status']], ['id' => $data['id']]);
         } catch (\Exception $e) {

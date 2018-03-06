@@ -46,7 +46,7 @@ function app_del(obj) {
     layer.confirm('确认要删除吗？', function (index) {
         $.ajax({
             type: 'POST',
-            url: 'url',
+            url: url,
             dataType: 'json',
             success: function (data) {
                 if (data.code == 1) {
@@ -68,10 +68,10 @@ function app_del(obj) {
  */
 function app_status(obj) {
     url = $(obj).attr('status_url');
-    layer.confirm('确认要删除吗？', function (index) {
+    layer.confirm('确认要修改吗？', function (index) {
         $.ajax({
             type: 'POST',
-            url: 'url',
+            url: url,
             dataType: 'json',
             success: function (data) {
                 if (data.code == 1) {

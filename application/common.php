@@ -59,3 +59,22 @@ class='label label-success rdiusa'>待审</span></a>";
     }
     return $str;
 }
+
+/**
+ * 通用化的API数据输出接口
+ * @param $status
+ * @param $message
+ * @param array $data
+ * @param int $httpCode
+ * @return \think\response\Json
+ */
+function show($status,$message,$data=[],$httpCode=200)
+{
+    $data=[
+        'status'=>$status,
+        'message'=>$message,
+        'data'=>$data
+    ];
+    return json($data,$httpCode);
+
+}
