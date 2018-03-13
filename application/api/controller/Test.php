@@ -7,8 +7,10 @@
  */
 
 namespace app\api\controller;
+use app\common\lib\Aes;
 use think\Controller;
-class Test extends Controller
+use app\common\lib\exception\ApiException;
+class Test extends Common
 {
     public  function index()
     {
@@ -20,13 +22,14 @@ class Test extends Controller
     public function update($id=0)
     {
 
-        halt(input('put.'));
+       // halt(input('put.'));
         return $id;
     }
     public function save()
     {
-        //return input('post.');
-        return show(1,'ok',input('post.'),201);
+        $data= input('post.');
+
+        return show(1,'ok',(new Aes())->encrypt(json_encode(input('post.'))),201);
     }
 
 }

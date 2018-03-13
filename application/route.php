@@ -19,10 +19,12 @@
     ],
 
 ];*/
+
 use think\Route;
 
-Route::get('test','api/test/index');
-Route::put('test/:id','api/test/update');
-Route::delete('test/:id','api/test/delete');
+Route::get('test', 'api/test/index');
+Route::put('test/:id', 'api/test/update');
+Route::delete('test/:id', 'api/test/delete');
 
-Route::resource('test','api/test');
+Route::resource('test', 'api/test');
+Route::get('api/:ver/cat', 'api/:ver.cat/read');//tp5自带版本控制方法吧v1赋值非ver，
