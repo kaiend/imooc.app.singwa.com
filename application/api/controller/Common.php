@@ -57,7 +57,7 @@ class Common extends Controller
         if (!IAuth::checkSignPass($headers)) {
             throw new ApiException('授权码sign失败', 401);
         }
-        Cache::set($headers['sign'],1,config('app.app_sign_cache_time'));
+        Cache::set($headers['sign'], 1, config('app.app_sign_cache_time'));
         $this->headers = $headers;
 
 
@@ -71,14 +71,33 @@ class Common extends Controller
             'version' => 1,
             'time' => Time::get13TimeStamp(),
         ];
-       // halt($data);
+        // halt($data);
 
         //echo IAuth::setSign($data);exit;//加密
 
 
-       /* $strrr = "FMyCkGsFlHaWfM6HOaFoh7qe5YPbBfuhlYBcB6GCr4g=";
-        echo (new Aes())->decrypt($strrr);
-        exit;//解密*/
+        /* $strrr = "FMyCkGsFlHaWfM6HOaFoh7qe5YPbBfuhlYBcB6GCr4g=";
+         echo (new Aes())->decrypt($strrr);
+         exit;//解密*/
+
+
+    }
+
+    /**
+     * 获取处理的新闻内容的数据
+     * @param array $news
+     * @return array
+     */
+    protected function getDealNews($news = [])
+    {
+        if (empty($news)) {
+            return [];
+        }
+        $cats = config('cat.list');
+        foreach ($news as $key => $new) {
+            $news[$key]['catname'] = $cats[$new['catid']] ? $cats[$new['catid']] : '-';
+            return $news;
+        }
 
 
     }

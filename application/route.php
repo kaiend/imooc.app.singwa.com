@@ -28,3 +28,5 @@ Route::delete('test/:id', 'api/test/delete');
 
 Route::resource('test', 'api/test');
 Route::get('api/:ver/cat', 'api/:ver.cat/read');//tp5自带版本控制方法吧v1赋值非ver，
+Route::get('api/:ver/index','api/:ver.index/index');
+Route::resource('api/:ver/news', 'api/:ver.news');
