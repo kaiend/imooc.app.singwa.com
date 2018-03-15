@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: kaiend
@@ -11,6 +12,7 @@
  */
 
 namespace app\admin\controller;
+ob_start();
 
 use think\Controller;
 
@@ -38,31 +40,35 @@ class Base extends Controller
     public $model = '';
 
     /**
-     * 初始化方法
+     * 初始化的方法
      */
     public function _initialize()
     {
-        $islogin = $this->islogin();
-        if (!$islogin) {
-            $this->redirect('login/index');
+        // 判定用户是否登录
+        $isLogin = $this->isLogin();
+        if (!$isLogin) {
+            return $this->redirect('login/index');
         }
 
     }
 
     /**
-     * 判断是否登录
+     * 判定是否登录
      * @return bool
      */
-    public function islogin()
+    public function isLogin()
     {
-        $user = (session(config('admin.session_user'), '', config('admin.session_user_scope'))
-        );//获取session
+        //ob_start();
+        //获取session
+        $user = session(config('admin.session_user'), '', config('admin.session_user_scope'));
+        //halt($user);
         if ($user && $user->id) {
             return true;
         }
-        return false;
 
+        return false;
     }
+
 
     /**
      * 获取分页内容page and size
@@ -100,33 +106,31 @@ class Base extends Controller
 
     }
 
+
     /**
      * 通用化修改状态
      */
     public function status()
     {
-        /* if (!intval($id)) {
-             return $this->result('', 0, 'id不合法');
-         }*/
+
         $data = input('param.');
-        //todo tp5 validate校验
+        // tp5  validate 机制 校验  小伙伴自行完成 id status
 
-        //todo 通过id 查询记录是否存在
-         $model = $this->model ? $this->model : request()->controller();
+        // 通过id 去库中查询下记录是否存在
+        //model('News')->get($data['id']);
 
-        // $i= model($model)->get($data['id']);
+        $model = $this->model ? $this->model : request()->controller();
 
         try {
             $res = model($model)->save(['status' => $data['status']], ['id' => $data['id']]);
         } catch (\Exception $e) {
             return $this->result('', 0, $e->getMessage());
         }
+
         if ($res) {
-            return $this->result(['jump_url' => $_SERVER['HTTP_REFERER']], 1, 'ok');
+            return $this->result(['jump_url' => $_SERVER['HTTP_REFERER']], 1, 'OK');
         }
-        if ($res) {
-            return $this->result('', 0, '修改失败');
-        }
+        return $this->result('', 0, '修改失败');
     }
 
 

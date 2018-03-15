@@ -17,7 +17,7 @@ function pagination($obj)
     }
     $params = request()->param();
     //return '<div class="imooc-app">' . $obj->appends($params)->render() . '</div>';
-   // return '<div class="imooc-app">' . $obj->appends($params)->render() . '</div>';
+    // return '<div class="imooc-app">' . $obj->appends($params)->render() . '</div>';
 }
 
 /**
@@ -47,18 +47,19 @@ function isYesNo($str)
 function status($id, $status)
 {
     $controller = request()->controller();
+
     $sta = $status == 1 ? 0 : 1;
     $url = url($controller . '/status', ['id' => $id, 'status' => $sta]);
+
     if ($status == 1) {
-        $str = "<a href='javascript:;' title='修改状态' status_url='" . $url . "' onclick='app_status(this)'><span 
-class='label label-success rdiusa'>正
-常</span></a>";
+        $str = "<a href='javascript:;' title='修改状态' status_url='" . $url . "' onclick='app_status(this)'><span class='label label-success radius'>正常</span></a>";
     } elseif ($status == 0) {
-        $str = "<a href='javascript:;' title='修改状态' status_url='" . $url . "' onclick='app_status(this)'><span 
-class='label label-success rdiusa'>待审</span></a>";
+        $str = "<a href='javascript:;' title='修改状态' status_url='" . $url . "' onclick='app_status(this)'><span class='label label-danger radius'>待审</span></a>";
     }
+
     return $str;
 }
+
 
 /**
  * 通用化的API数据输出接口
@@ -68,13 +69,13 @@ class='label label-success rdiusa'>待审</span></a>";
  * @param int $httpCode
  * @return \think\response\Json
  */
-function show($status,$message,$data=[],$httpCode=200)
+function show($status, $message, $data = [], $httpCode = 200)
 {
-    $data=[
-        'status'=>$status,
-        'message'=>$message,
-        'data'=>$data
+    $data = [
+        'status' => $status,
+        'message' => $message,
+        'data' => $data
     ];
-    return json($data,$httpCode);
+    return json($data, $httpCode);
 
 }

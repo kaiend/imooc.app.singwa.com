@@ -35,12 +35,15 @@ class News extends Base
      */
     public function getNewsByCondition($condition = [], $from = 0, $size = 5)
     {
-        $condition['status'] = [
-            'neq', config('code.status_delete')
-        ];
+        if (!isset($condition['status'])) {
+            $condition['status'] = [
+                'neq', config('code.status_delete')
+            ];
+        }
 
         $order = ['id' => 'desc'];
         $result = $this->where($condition)
+            ->field($this->_getListField())
             ->limit($from, $size)
             ->order($order)
             ->select();
@@ -54,11 +57,15 @@ class News extends Base
      */
     public function getNewsCountByCondition($condition = [])
     {
-        $condition['status'] = [
-            'neq', config('code.status_delete')
-        ];
+        if (!isset($condition['status'])) {
+            $condition['status'] = [
+                'neq', config('code.status_delete')
+            ];
+        }
+
         return $this->where($condition)
             ->count();
+
     }
 
     /**
@@ -117,8 +124,38 @@ class News extends Base
             'catid',
             'image',
             'title',
-            'read_count'];
+            'read_count',
+            'status',
+            'is_position',
+            'update_time',
+            'create_time'
+        ];
 
     }
+
+    /**
+     * 獲取排行榜數據
+     * @param int $num
+     * @return false|\PDOStatement|string|\think\Collection
+     */
+    public function getRankNormalNews($num = 5)
+    {
+        $data = [
+            'status' => 1,
+            'is_position' => 1,
+
+        ];
+        $order = [
+            'read_count' => 'desc',
+        ];
+
+        return $this->where($data)
+            ->field($this->_getListField())
+            ->order($order)
+            ->limit($num)
+            ->select();
+
+    }
+
 
 }

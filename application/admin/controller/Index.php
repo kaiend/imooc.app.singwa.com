@@ -13,10 +13,10 @@ use think\Controller;
 
 class Index extends Base
 {
-    public function _initialize()
+    /*public function _initialize()
     {
 
-    }
+    }*/
 
     public function index()
     {

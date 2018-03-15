@@ -51,9 +51,9 @@ function app_del(obj) {
             success: function (data) {
                 if (data.code == 1) {
                     self.location = data.data.jump_url;
-                } else if(data.code == 0){
+                } else if (data.code == 0) {
                     layer.msg(data.msg, {icon: 2, time: 2000});
-            }
+                }
             },
             error: function (data) {
                 console.log(data.msg);
@@ -74,11 +74,12 @@ function app_status(obj) {
             url: url,
             dataType: 'json',
             success: function (data) {
+                //console.log(data);
                 if (data.code == 1) {
                     self.location = data.data.jump_url;
-                } else if(data.code == 0) {
+                } else if (data.code == 0) {
                     layer.msg(data.msg, {icon: 2, time: 2000});
-            }
+                }
             },
             error: function (data) {
                 console.log(data.msg);

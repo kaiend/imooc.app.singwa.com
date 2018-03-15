@@ -28,6 +28,10 @@ class Common extends Controller
      */
     public $headers = '';
 
+    public $page = 1;
+    public $size = 10;
+    public $from = 0;
+
     /**
      * 初始化的方法
      */
@@ -100,6 +104,16 @@ class Common extends Controller
         }
 
 
+    }
+
+    /**
+     * 获取分页内容page and size
+     */
+    public function getPageAndSize($data)
+    {
+        $this->page = !empty($data['page']) ? $data['page'] : 1;
+        $this->size = !empty($data['size']) ? $data['size'] : config('paginate.list_rows');
+        $this->from = ($this->page - 1) * $this->size;
     }
 
 
